@@ -1,0 +1,87 @@
+Sub SubmitMultiSale()
+    Dim wsEntry As Worksheet, wsData As Worksheet
+    Dim nextRow As Long, i As Long
+    Dim custName As String, custPhone As String, saleDate As Date, salesID As String
+    Dim newID As String, paymentMethod As String
+    
+    Set wsEntry = Sheets("Sales_Entry_Form")
+    Set wsData = Sheets("Sales_Data")
+    
+    ' --- UNPROTECT BOTH SHEETS ---
+    wsEntry.Unprotect Password:="1234"
+    wsData.Unprotect Password:="1234"
+    
+    ' Capture the Header Information
+    salesID = wsEntry.Range("E5").Value
+    custName = wsEntry.Range("C6").Value
+    custPhone = wsEntry.Range("C7").Value
+    If IsDate(wsEntry.Range("C8").Value) Then
+    saleDate = wsEntry.Range("C8").Value
+Else
+   
+    saleDate = Date
+End If
+    paymentMethod = wsEntry.Range("D31").Value
+    
+    ' Loop through the product rows (11 to 25)
+    For i = 11 To 25
+        If wsEntry.Range("E" & i).Value <> "" Then
+            nextRow = wsData.Cells(wsData.Rows.Count, "A").End(xlUp).Row + 1
+            
+            wsData.Cells(nextRow, 1).Value = saleDate
+            wsData.Cells(nextRow, 2).Value = salesID
+            wsData.Cells(nextRow, 3).Value = custName
+            wsData.Cells(nextRow, 4).Value = custPhone
+            wsData.Cells(nextRow, 5).Value = wsEntry.Range("C" & i).Value
+            wsData.Cells(nextRow, 6).Value = wsEntry.Range("D" & i).Value
+            wsData.Cells(nextRow, 7).Value = wsEntry.Range("E" & i).Value
+            wsData.Cells(nextRow, 8).Value = wsEntry.Range("F" & i).Value
+            wsData.Cells(nextRow, 9).Value = wsEntry.Range("G" & i).Value
+            wsData.Cells(nextRow, 11).Value = paymentMethod
+        End If
+    Next i
+    
+    ' Generate New ID
+    Randomize
+    newID = "ND-" & Chr(Int(Rnd() * 26) + 65) & WorksheetFunction.Dec2Hex(Int(Rnd() * 16)) & _
+            Int(Rnd() * 900 + 100) & Chr(Int(Rnd() * 26) + 65) & Int(Rnd() * 90 + 10)
+
+    wsEntry.Range("E5").Value = newID
+    
+ ' Clear Contents after save
+    wsEntry.Range("E11:E25,F11:F25").ClearContents
+    wsEntry.Range("D31").MergeArea.ClearContents
+    wsEntry.Range("C6").MergeArea.ClearContents
+    wsEntry.Range("C7").MergeArea.ClearContents
+    
+    ' --- RE-PROTECT BOTH SHEETS ---
+    wsEntry.Protect Password:="1234"
+    wsData.Protect Password:="1234"
+    
+    MsgBox "Order " & salesID & " recorded successfully!", vbInformation, "Nduka Gadgets"
+End Sub
+Sub CancelSale()
+    Dim wsEntry As Worksheet
+    Dim newID As String
+    Set wsEntry = Sheets("Sales_Entry_Form")
+    
+    If MsgBox("Are you sure you want to clear this form?", vbQuestion + vbYesNo, "Confirm") = vbNo Then Exit Sub
+
+    ' --- UNPROTECT TO ALLOW CLEARING ---
+    wsEntry.Unprotect Password:="1234"
+
+    Randomize
+    newID = "ND-" & Chr(Int(Rnd() * 26) + 65) & WorksheetFunction.Dec2Hex(Int(Rnd() * 16)) & _
+            Int(Rnd() * 900 + 100) & Chr(Int(Rnd() * 26) + 65) & Int(Rnd() * 90 + 10)
+
+    wsEntry.Range("E11:E25,F11:F25").ClearContents
+    wsEntry.Range("D31").MergeArea.ClearContents
+    wsEntry.Range("C6").MergeArea.ClearContents
+    wsEntry.Range("C7").MergeArea.ClearContents
+    
+    ' --- RE-PROTECT ---
+    wsEntry.Protect Password:="1234"
+
+    MsgBox "Form has been reset.", vbInformation, "Nduka Gadgets"
+End Sub
+
