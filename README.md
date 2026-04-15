@@ -1,25 +1,114 @@
-# Nduka Gadgets & Co. | Automated Retail ERP & Analytics System
-## Executive Summary
-In fast-paced retail environments, manual sales tracking often leads to data fragmentation, calculation errors, and delayed business insights. This project solves these challenges by transforming a standard spreadsheet into a robust, "app-like" ERP (Enterprise Resource Planning) tool. By centralizing sales entry through an automated interface and piping that data into a relational database, the system ensures 100% data accuracy and provides real-time visibility into business performance for stakeholder decision-making.
-## Key Technical Features 🛠️
-* Relational Data Mapping: Utilizes a custom VBA-driven looping script to transfer multi-line sales from a front-end "Sales Order Form" into a centralized, structured database.
-* Automated Data Integrity: Features dynamic sheet protection toggles within the VBA backend. This prevents accidental deletion of complex formulas (like XLOOKUPs for product pricing) while allowing authorized macros to update records seamlessly.
-* Dynamic Business Intelligence: An interactive Executive Dashboard provides real-time KPI updates. The interface uses advanced Pivot Table logic and Slicers to allow users to filter performance by category, date, or payment method.
-* Synthetic Data Engineering: Built using a custom dataset of 100+ electronic products across multiple categories (MacBooks, iPhones, Laptops, etc.) to simulate a high-volume retail environment.
-## Technical Stack 💻
-* Platform: Microsoft Excel
-* Language: VBA (Visual Basic for Applications)
-* Analysis Tools: Power Pivot, Slicers, Data Validation
-* Design: UI/UX optimized for 16:9 widescreen displays
-## How to Use 📖
-* Enable Macros: Upon opening the .xlsm file, click "Enable Content" to allow the VBA automation to run.
-* Fill the Entry Form: Navigate to the Sales Records tab. Enter customer details and select products from the dropdown menus.
-* Submit Order: Click the "Submit" button. The system will validate the data, generate a unique Sales ID, move the record to the database, and reset the form.
-* Analyze Performance: Navigate to the Overview tab. Use the Slicers to filter the data and view updated revenue trends and best-selling products.
-## Project Structure 📂
-* Nduka_Gadgets_ERP.xlsm: The core macro-enabled application.
-* vba_source_code.txt: Raw VBA scripts for SubmitMultiSale and CancelSale for easy code review.
-* Dashboard_Preview.png: Screenshot of the interactive data visualization interface.
-## Contact & Portfolio
-Designed and Developed by a Professional Data Analyst focused on delivering actionable business solutions. Check out https://peter-portfolio11.vercel.app for more projects involving Python, SQL, and Power BI.
-Designed and Developed by a Professional Data Analyst focused on delivering actionable business solutions. Check out my [React Portfolio Website] for more projects involving Python, SQL, and Power BI.
+# 🏪 Nduka Gadgets Co. – Automated Retail ERP & Analytics System
+
+## 📌 Project Overview  
+This project simulates a retail business environment where fragmented sales and inventory processes limit effective decision-making.  
+
+The **Nduka Gadgets ERP System** was developed to centralize retail operations, integrate key business functions, and generate actionable insights through data analytics and visualization.  
+
+It demonstrates how data can be used to improve **sales performance, inventory management, and overall business efficiency**.
+
+---
+
+## 🎯 Business Problem  
+Retail businesses often struggle with:
+- Poor inventory tracking  
+- Lack of centralized sales data  
+- Delayed or inaccurate reporting  
+- Difficulty identifying high-performing products  
+
+This project addresses these challenges by designing a system that enables:
+- Real-time tracking of sales and inventory  
+- Structured data storage for analysis  
+- Insight generation for decision-making  
+
+---
+
+## 🧠 Objectives  
+The key objectives of this project are to:
+- Design a structured retail ERP data system  
+- Analyze sales and inventory data  
+- Build interactive dashboards for business insights  
+- Support data-driven decision-making  
+
+---
+
+## 🛠️ Tools & Technologies  
+- Microsoft Excel – Data cleaning and preprocessing  
+- SQL – Data querying and transformation  
+- Power BI – Data visualization and dashboard creation  
+
+---
+
+## 📊 Key Business Questions  
+This project answers important business questions such as:
+- Which products generate the highest revenue?  
+- What are the monthly sales trends?  
+- Which product categories perform best?  
+- Where are inventory shortages occurring?  
+- How can stock levels be optimized?  
+
+---
+
+## 📈 Dashboard & Features  
+
+### Sales Performance Overview  
+- Revenue trends over time  
+- Top-performing products  
+- Category-level insights  
+
+### Inventory Management Dashboard  
+- Stock levels by product  
+- Low-stock alerts  
+- Inventory distribution  
+
+### Business KPIs  
+- Total Revenue  
+- Total Units Sold  
+- Inventory Turnover Indicators  
+
+---
+
+## 🔍 Key Insights  
+Some of the insights generated include:
+- A small number of products contribute the majority of revenue  
+- Sales show clear seasonal trends  
+- Certain product categories experience frequent stock shortages  
+- Inventory imbalances impact sales performance  
+
+---
+
+## 💡 Business Impact  
+This system enables:
+- Faster and more accurate decision-making  
+- Improved inventory control  
+- Identification of high-value products  
+- Better sales forecasting  
+
+---
+
+## 📂 Project Structure  
+- /data – Raw and cleaned datasets  
+- /sql – SQL queries for data extraction and transformation  
+- /dashboard – Power BI dashboard files  
+- /images – Dashboard screenshots and visuals  
+
+---
+
+## 🚀 Future Improvements  
+- Integration with real-time data sources  
+- Automation of reporting processes  
+- Advanced predictive analytics (sales forecasting)  
+- Deployment as a web-based application  
+
+---
+
+## 👤 Author  
+**Peter Obikpe**  
+Aspiring Data Analyst | Business Intelligence Enthusiast  
+
+---
+
+## 📬 Contact  
+- LinkedIn: https://www.linkedin.com/in/peter-obikpe-8780903a5
+
+- Portfolio: https://peter-portfolio11.vercel.app
