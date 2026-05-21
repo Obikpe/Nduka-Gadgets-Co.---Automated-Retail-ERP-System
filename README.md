@@ -49,38 +49,3 @@ The deployment of this custom Excel ERP yielded immediate, measurable operationa
 * **Zero Critical Stockouts:** During the first quarter of testing, automated reorder alerts successfully prompted timely supplier orders, keeping high-margin stock availability at 100%.
 * **Absolute Data Integrity:** Eradicated manual pricing errors and duplicate transaction entries by locking down tables and routing all inputs through the VBA validation engine.
 * **Capital Optimization:** Enabled leadership to identify dead stock, allowing them to liquidate stale inventory and reallocate capital to high-turnover products.
-
----
-
-### 💻 Code Snippet Highlight
-```vba
-Sub CommitTransaction()
-    ' Purpose: Logs sale to Sales Log and simultaneously updates Inventory Ledger
-    Dim wsSales As Worksheet, wsInv As Worksheet
-    Dim nextRow As Long, targetItem As String, qtySold As Long
-    
-    Set wsSales = ThisWorkbook.Sheets("Sales_Log")
-    Set wsInv = ThisWorkbook.Sheets("Inventory_Ledger")
-    
-    ' Fetch inputs from Entry Template
-    targetItem = Range("B4").Value ' SKU
-    qtySold = Range("B5").Value    ' Quantity
-    
-    ' 1. Log the Sale
-    nextRow = wsSales.Cells(wsSales.Rows.Count, "A").End(xlUp).Row + 1
-    wsSales.Cells(nextRow, 1).Value = Now ' Timestamp
-    wsSales.Cells(nextRow, 2).Value = targetItem
-    wsSales.Cells(nextRow, 3).Value = qtySold
-    
-    ' 2. Update Inventory via WorksheetFunction Match
-    Dim rowNum As Variant
-    rowNum = Application.Match(targetItem, wsInv.Columns("A"), 0)
-    
-    If Not IsError(rowNum) Then
-        ' Subtract quantity from the Stock Column (Assume Column C is Current Stock)
-        wsInv.Cells(rowNum, 3).Value = wsInv.Cells(rowNum, 3).Value - qtySold
-        MsgBox "Transaction secure and inventory updated!", vbInformation
-    Else
-        MsgBox "Error: SKU not found in inventory.", vbCritical
-    End If
-End Sub
